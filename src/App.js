@@ -1,6 +1,12 @@
 import logo from './logo.svg';
 import './App.css';
 
+//Import useState Hook from react
+import React, { useState } from 'react';
+
+// 引入NavLink组件
+import { NavLink, Link } from 'react-router-dom';
+
 function App() {
   return (
     <div className="App">
@@ -17,6 +23,15 @@ function App() {
         >
           Learn React
         </a>
+        <NavLink
+          to="/todolist"
+          className='nav-link'
+          activeClassName='active'
+        >
+          todolist
+        </NavLink>
+        <Link to="/todolist2">todolist-function</Link>
+        <Link to="/todolist3">todolist-reducer</Link>
       </header>
     </div>
   );

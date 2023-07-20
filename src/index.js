@@ -2,12 +2,25 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import TodoList from './components/TodoList/TodoList';
+import TodoList2 from './components/TodoList2/TodoList';
+import TodoList3 from './components/TodoList3/TodoList';
 import reportWebVitals from './reportWebVitals';
+// 导入react-router-dom
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/todolist" element={<TodoList />} />
+        <Route path="/todolist2" element={<TodoList2 />} />
+        <Route path="/todolist3" element={<TodoList3 />} />
+        <Route path="*" element={<Navigate to="/" />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,0 +1,41 @@
+.todo-list {
+  padding: 20px;
+}
+
+.todo-list .form-input {
+  display: flex;
+  align-items: center;
+}
+
+.todo-list .form-input input {
+  width: 230px;
+  padding: 7px;
+  border: solid 1px #ccc;
+  margin-right: 10px;
+}
+
+.todo-list .form-input button {
+  padding: 5px;
+  cursor: pointer;
+}
+
+.todo-list .list-ul {
+  width: 300px;
+}
+
+.todo-list .list-ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-bottom: solid 1px #ccc;
+}
+
+.todo-list .list-ul li button + button {
+  margin-left: 5px;
+}
+
+.todo-list .list-ul li label.done {
+  text-decoration: line-through;
+  color: #ccc;
+}
