@@ -1,22 +1,49 @@
+import { useDispatchContext } from "./todoContext";
+
 function TodoItem({
   item,
   index,
-  handleItemDelete,
-  handleChangeEditStatus,
-  handleChangeDone,
-  handleEditChange,
-  handleSaveValue,
 }) {
+  const dispatch = useDispatchContext();
+
   return (
     <li key={index}>
       {item.isEdit ? (
         <>
-          <input value={item.value} onChange={handleEditChange} />
+          <input
+            value={item.value}
+            onChange={(e) =>
+              dispatch({
+                type: "changeItemInputChange",
+                payload: e.target.value,
+              })
+            }
+          />
           <div>
-            <button onClick={() => handleSaveValue(index, item.value)}>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "saveItemValue",
+                  payload: {
+                    index,
+                    value: item.value,
+                  },
+                })
+              }
+            >
               保存
             </button>
-            <button onClick={() => handleChangeEditStatus(index, false)}>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "changeEditStatus",
+                  payload: {
+                    index,
+                    isEdit: false,
+                  },
+                })
+              }
+            >
               取消
             </button>
           </div>
@@ -26,17 +53,44 @@ function TodoItem({
           <label className={item.isDone ? "done" : ""}>
             <input
               type="checkbox"
-              onChange={(ev) => handleChangeDone(index, ev)}
+              onChange={(e) =>
+                dispatch({
+                  type: "changeItemDone",
+                  payload: {
+                    index,
+                    isDone: e.target.checked,
+                  },
+                })
+              }
               checked={item.isDone}
               style={{ marginRight: "5px" }}
             />
             <span>{item.value}</span>
           </label>
           <div>
-            <button onClick={() => handleChangeEditStatus(index, true)}>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "changeEditStatus",
+                  payload: {
+                    index,
+                    isEdit: true,
+                  },
+                })
+              }
+            >
               编辑
             </button>
-            <button onClick={() => handleItemDelete(index)}>删除</button>
+            <button
+              onClick={() =>
+                dispatch({
+                  type: "deleteTodoItem",
+                  payload: index,
+                })
+              }
+            >
+              删除
+            </button>
           </div>
         </>
       )}
