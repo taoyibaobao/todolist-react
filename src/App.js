@@ -24,14 +24,14 @@ function App() {
           Learn React
         </a>
         <NavLink
-          to="/todolist"
+          to="/page/todolist"
           className='nav-link'
           activeClassName='active'
         >
           todolist
         </NavLink>
-        <Link to="/todolist2">todolist-function</Link>
-        <Link to="/todolist3">todolist-reducer</Link>
+        <Link to="/page/todolist2">todolist-function</Link>
+        <Link to="/page/todolist3">todolist-reducer</Link>
       </header>
     </div>
   );

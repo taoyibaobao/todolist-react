@@ -3,7 +3,7 @@ import "../TodoList/style.css";
 import TodoItem from "./TodoItem";
 import { TodoContext, TodoDispatchContext } from "./todoContext";
 import todoReducer from "./todoReducer";
-import { useReducer } from "react";
+import { useEffect, useReducer } from "react";
 
 const initialState = {
   list: [],
@@ -11,7 +11,34 @@ const initialState = {
   lastEditValue: "",
 };
 
-function TodoList() {
+function TodoList({ init }) {
+  // initialState中的list需要从远程获取，模拟一个fetch
+  console.log('init', init);
+  useEffect(() => {
+    console.log("mock fetch 准备发送请求");
+    let igore = false;
+    setTimeout(() => {
+      if (igore) return;
+      console.log('mock fetch 请求成功');
+      dispatch({
+        type: "initList",
+        payload: [
+          {
+            value: "学习React",
+            isEdit: false,
+            isDone: false,
+          },
+          { value: "学习Vue", isEdit: false, isDone: false },
+          { value: "学习Angular", isEdit: false, isDone: false },
+        ],
+      });
+    }, 1000);
+    return () => {
+      igore = true;
+      console.log("mock fetch 取消发送请求");
+    }
+  }, [init]);
+
   const [state, dispatch] = useReducer(todoReducer, initialState);
 
   function handleInputChange(e) {

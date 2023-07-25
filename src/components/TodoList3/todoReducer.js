@@ -1,5 +1,11 @@
 export default function todoReducer(state, action) {
   switch (action.type) {
+    case "initList": {
+      return {
+        ...state,
+        list: action.payload,
+      }
+    }
     case "changeInputAdd": {
       return {
         ...state,

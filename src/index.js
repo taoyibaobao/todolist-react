@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import Page from './pages';
 import TodoList from './components/TodoList/TodoList';
 import TodoList2 from './components/TodoList2/TodoList';
 import TodoList3 from './components/TodoList3/TodoList';
@@ -15,9 +16,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/todolist" element={<TodoList />} />
-        <Route path="/todolist2" element={<TodoList2 />} />
-        <Route path="/todolist3" element={<TodoList3 />} />
+        <Route path="/page" element={<Page />}>
+          <Route path="todolist" element={<TodoList />} />
+          <Route path="todolist2" element={<TodoList2 />} />
+          <Route path="todolist3" element={<TodoList3 />} />
+        </Route>
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </BrowserRouter>
